@@ -94,7 +94,7 @@ class SQL(DataLayer):
                         model, json.loads(req.where))
                     args['spec'] = self.combine_queries(
                         args['spec'], parse_dictionary(spec, model))
-                except (AttributeError, TypeError):
+                except (AttributeError, TypeError, json.errors.JSONDecodeError):
                     # if parse failed and json loads fails - raise 400
                     abort(400)
 
